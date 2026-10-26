@@ -1,0 +1,24 @@
+{
+  "host": "http://127.0.0.1:11434",
+  "model": "qwen3:4b",
+  "workspace": "../workspace",
+  "max_iterations": 12,
+  "max_tool_calls_per_response": 8,
+  "num_ctx": 8192,
+  "num_predict": 4096,
+  "temperature": 0.6,
+  "top_p": 0.95,
+  "top_k": 20,
+  "think": true,
+  "timeout_seconds": 120,
+  "sandbox": {
+    "image": "python:3.10-slim",
+    "docker_executable": "docker",
+    "timeout_seconds": 30,
+    "memory_mb": 512,
+    "cpus": 1.0,
+    "pids_limit": 64,
+    "tmpfs_size_mb": 64,
+    "output_limit_bytes": 65536
+  }
+}

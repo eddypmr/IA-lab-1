@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "AI Agent Lab (WSL)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "ai_agent_lab.main",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
