@@ -187,9 +187,8 @@ se haya completado.
 
 ## Estado
 
-Las fases 0 y 1 tienen implementación y pruebas. La fase 2 tiene implementación y
-pruebas deterministas; la aceptación real está pendiente porque el daemon Docker no
-estaba disponible en WSL durante la comprobación. Véanse la
+Las fases 0, 1 y 2 tienen implementación y pruebas; la fase 2 también pasó sus pruebas
+con Docker real y la aceptación integrada con Ollama. Véanse la
 [verificación fase 0–1](docs/experiments/phase-0-1-validation.md),
 [verificación fase 2](docs/experiments/phase-2-validation.md) y
 [guía del sandbox](docs/learning/05-sandbox-docker.md).

@@ -1,7 +1,7 @@
 # Verificación de la fase 2 — Docker Sandbox
 
 **Fecha:** 2026-10-26.
-**Estado:** unitarias y comprobaciones estáticas correctas; ejecución en daemon real pendiente.
+**Estado:** validada con Docker real y aceptación integrada con Ollama.
 
 ## Disponibilidad observada
 
@@ -45,7 +45,21 @@ AI_AGENT_LAB_TEST_OLLAMA=1 AI_AGENT_LAB_TEST_DOCKER=1 \
   python -m pytest -m acceptance -v
 ```
 
-La aceptación integrada pide a Qwen generar `sum.py`, ejecutar el archivo dentro de
-Docker y comunicar tanto el código de salida como el resultado medido. Se usa un
-workspace temporal. No se han ejecutado aún las pruebas Docker/Ollama reales, porque
-el daemon no está accesible en esta sesión.
+Resultados aportados desde WSL el 2026-10-26:
+
+- `AI_AGENT_LAB_TEST_DOCKER=1 .venv/bin/python -m pytest -m docker -v`: 2 pasaron;
+  la aceptación integrada se omitió en este comando porque no estaba habilitada la
+  variable de Ollama.
+- `AI_AGENT_LAB_TEST_OLLAMA=1 AI_AGENT_LAB_TEST_DOCKER=1 .venv/bin/python -m pytest
+  -m acceptance -v`: la prueba integrada pasó en 87,16 s.
+- La aceptación comprobó que Qwen creó `sum.py`, que el contenedor lo ejecutó y que
+  el agente recibió el código de salida 0 y el resultado 42.
+- La prueba manual interactiva también pasó: se inició el agente con
+  `--num-ctx 12288 --num-predict 8192 --timeout 300`; Qwen creó `prueba.py`, listó
+  el workspace y `execute_python` devolvió `exit_code=0` y stdout `42`.
+- Con los valores por defecto (contexto 8192, generación 4096), esa misma petición
+  manual terminó por longitud antes de producir una respuesta completa. Subir solo el
+  timeout a 300 segundos no bastó; aumentar el contexto y el presupuesto de generación
+  sí permitió completar el flujo en este caso.
+
+Con esta evidencia, el criterio de aceptación de la fase queda cumplido.

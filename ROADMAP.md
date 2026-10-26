@@ -292,12 +292,12 @@ El agente puede crear tres archivos diferentes mediante llamadas a herramientas 
 
 **Prioridad: crítica**
 
-**Estado: implementación disponible; aceptación en Docker real pendiente.**
+**Estado: completada y validada en Docker real.**
 
 El usuario autorizó iniciar esta fase el 2026-10-26. Se implementaron el ejecutor,
-las herramientas y las pruebas deterministas. Docker Desktop está instalado en Windows,
-pero su daemon no está accesible desde Ubuntu WSL en esta sesión; por tanto, el criterio
-de aceptación real sigue pendiente. Véase [validación fase 2](docs/experiments/phase-2-validation.md).
+las herramientas y las pruebas deterministas. El 2026-10-26 se ejecutaron con éxito
+las pruebas de contenedor real y la aceptación integrada con Ollama/Qwen3. Véase
+[validación fase 2](docs/experiments/phase-2-validation.md).
 
 ### Objetivo
 
@@ -312,7 +312,7 @@ Permitir que el agente ejecute comandos y programas de manera autónoma dentro d
 - [x] Límites de CPU, memoria, procesos, filesystem, usuario y red.
 - [x] Bind mount exclusivo al workspace y eliminación del contenedor al terminar.
 - [x] Pruebas deterministas y aceptación real opt-in preparadas.
-- [ ] Ejecutar pruebas reales en daemon Docker Desktop integrado con WSL.
+- [x] Ejecutar pruebas reales en daemon Docker Desktop integrado con WSL.
 
 ### Arquitectura
 
@@ -354,8 +354,7 @@ Herramientas `execute_command()` y `execute_python()` basadas en Docker.
 
 ### Criterio de aceptación
 
-Pendiente de validar con el daemon Docker accesible: el agente genera un script Python,
-lo ejecuta en Docker y recupera correctamente el resultado.
+Validado: el agente generó un script Python, lo ejecutó en Docker y recuperó el resultado.
 
 ---
 

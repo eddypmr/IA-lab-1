@@ -1,6 +1,6 @@
 # Decisión 0002 — Ejecutar comandos únicamente dentro de Docker
 
-**Estado:** implementada parcialmente; aceptación real pendiente de Docker integrado en WSL.
+**Estado:** implementada y validada con Docker integrado en WSL.
 **Fecha:** 2026-10-26.
 **Roadmap:** [ROADMAP.md](../../ROADMAP.md).
 
@@ -35,4 +35,5 @@ su salida y código de salida.
 Los programas ejecutados tienen acceso de escritura al workspace solicitado y pueden
 cambiarlo. Docker aporta límites de kernel y cgroups, pero no una VM de kernel separado.
 `Docker Desktop` debe ejecutarse y tener integración WSL en la misma distribución de
-Ubuntu. Sin ese daemon no se puede completar la prueba real del contenedor.
+Ubuntu. La integración se habilitó y la prueba real pasó; véase
+[el registro de fase 2](../experiments/phase-2-validation.md).

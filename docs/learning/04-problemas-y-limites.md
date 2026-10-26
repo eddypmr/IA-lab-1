@@ -12,6 +12,7 @@
 | `pip install` falló al resolver PyPI desde el sandbox. | Se repitió la instalación con acceso autorizado a red, dentro de `.venv`. |
 | La primera inferencia superó 120 s y generó miles de tokens sin herramientas. | Se inspeccionaron registros, plantilla y `/api/show`: la variante instalada solo permite `think: true`. Se corrigió el modo, se evitó muestreo voraz y se añadió `num_predict` para acotar la generación. |
 | Con razonamiento activado, 2048 tokens de generación no bastaron para la tarea completa. | Se rechazó la respuesta truncada sin ejecutar herramientas y se ajustaron los valores iniciales a 8192 de contexto y 4096 de generación. |
+| Una tarea manual de crear y ejecutar un script agotó `num_predict=4096`, incluso con timeout HTTP de 300 s. | El agente rechazó la salida truncada y no ejecutó herramientas. Con `--num-ctx 12288 --num-predict 8192 --timeout 300`, Qwen completó la tarea y Docker devolvió 42. En esta GPU de 6 GB, esos valores aumentan memoria y latencia; se mantienen como ajuste opcional, no como valores globales. |
 | Un LLM puede emitir herramientas inexistentes, argumentos incorrectos o respuestas incompletas. | Lista explícita, JSON Schema, validación del mensaje HTTP y errores estructurados. |
 | Resolver rutas con un prefijo textual puede autorizar rutas vecinas o seguir symlinks. | Se rechazan rutas no relativas y se recorren descriptores con `O_NOFOLLOW`. |
 | Leer un FIFO podría bloquear la ejecución. | Apertura no bloqueante y comprobación de archivo regular antes de leer. |
